@@ -1,7 +1,7 @@
 [
   {
     "image": "../assets/cherries.png",
-    "name": "chili"
+    "name": "cherries"
   },
   {
     "image": "../assets/grapes.png",
@@ -30,9 +30,5 @@
   {
     "image": "../assets/watermelon.png",
     "name": "watermelon"
-  },
-  {
-    "image": "../assets/cherries.png",
-    "name": "cherries"
   }
 ]

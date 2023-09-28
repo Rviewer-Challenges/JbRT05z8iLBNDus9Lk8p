@@ -1,10 +1,20 @@
-const gridContainer = document.querySelector(".grid-container");
+const cardsContainer = document.querySelector(".cards-container");
+const remainingPairsElement = document.querySelector(".pairs");
+const scoreElement = document.querySelector(".score");
+const timerElement = document.getElementById("timer");
+const startButton = document.getElementById("startButton");
+const timerMessage = document.getElementById("timer-message");
+const winnerMessage = document.getElementById("winner-message");
+
 let cards = [];
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
+let remainingPairs = 8;
+let timeInSeconds = 60;
 
-document.querySelector(".score").textContent = score;
+scoreElement.textContent = score;
+timerMessage.textContent = "";
 
 fetch("../data/cards.json")
   .then((res) => res.json())
@@ -39,9 +49,12 @@ function generateCards() {
       </div>
       <div class="back"></div>
     `;
-    gridContainer.appendChild(cardElement);
+    cardsContainer.appendChild(cardElement);
     cardElement.addEventListener("click", flipCard);
   }
+
+  remainingPairs = cards.length / 2;
+  remainingPairsElement.textContent = remainingPairs;
 }
 
 function flipCard() {
@@ -73,6 +86,15 @@ function disableCards() {
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
 
+  remainingPairs--;
+  remainingPairsElement.textContent = remainingPairs;
+
+  if (remainingPairs === 0) {
+    winnerMessage.textContent = "Congratulations! You've won.";
+    timerElement.classList.add('won');
+    stopTimer();
+  }
+
   resetBoard();
 }
 
@@ -95,6 +117,49 @@ function restart() {
   shuffleCards();
   score = 0;
   document.querySelector(".score").textContent = score;
-  gridContainer.innerHTML = "";
+  cardsContainer.innerHTML = "";
   generateCards();
+  startTimer();
+}
+
+let timerInterval = null;
+
+function updateTimer() {
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = timeInSeconds % 60;
+
+  timerElement.querySelector('.minutes').textContent = minutes.toString().padStart(2, '0');
+  timerElement.querySelector('.seconds').textContent = seconds.toString().padStart(2, '0');
+
+  if (timeInSeconds === 0) {
+    clearInterval(timerInterval);
+    timerElement.classList.add('expired');
+    timerMessage.textContent = "Time's up!";
+  } else {
+    timeInSeconds--;
+  }
+}
+
+function startTimer() {
+  if (timerInterval === null) {
+    timerInterval = setInterval(updateTimer, 1000);
+  }
+}
+
+function restartTimer() {
+  clearInterval(timerInterval);
+  timeInSeconds = 60;
+  timerElement.classList.remove('expired');
+  timerElement.classList.remove('won');
+  timerMessage.textContent = "";
+  winnerMessage.textContent = "";
+  updateTimer();
+}
+
+startButton.addEventListener("click", startTimer);
+document.getElementById("restartButton").addEventListener("click", restartTimer);
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  timerElement.classList.remove('expired');
 }
