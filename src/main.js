@@ -10,11 +10,10 @@ let cards = [];
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
-let remainingPairs = 8;
 let timeInSeconds = 60;
+let gameStarted = false;
 
 scoreElement.textContent = score;
-timerMessage.textContent = "";
 
 fetch("../data/cards.json")
   .then((res) => res.json())
@@ -58,6 +57,7 @@ function generateCards() {
 }
 
 function flipCard() {
+  if (!gameStarted) return;
   if (lockBoard) return;
   if (this === firstCard) return;
 
@@ -119,7 +119,7 @@ function restart() {
   document.querySelector(".score").textContent = score;
   cardsContainer.innerHTML = "";
   generateCards();
-  startTimer();
+  restartTimer()
 }
 
 let timerInterval = null;
@@ -135,12 +135,14 @@ function updateTimer() {
     clearInterval(timerInterval);
     timerElement.classList.add('expired');
     timerMessage.textContent = "Time's up!";
+    gameStarted = false;
   } else {
     timeInSeconds--;
   }
 }
 
 function startTimer() {
+  gameStarted = true;
   if (timerInterval === null) {
     timerInterval = setInterval(updateTimer, 1000);
   }
@@ -148,18 +150,18 @@ function startTimer() {
 
 function restartTimer() {
   clearInterval(timerInterval);
+  timerInterval = null;
   timeInSeconds = 60;
   timerElement.classList.remove('expired');
   timerElement.classList.remove('won');
   timerMessage.textContent = "";
   winnerMessage.textContent = "";
   updateTimer();
+  gameStarted = false;
 }
 
 startButton.addEventListener("click", startTimer);
-document.getElementById("restartButton").addEventListener("click", restartTimer);
 
 function stopTimer() {
   clearInterval(timerInterval);
-  timerElement.classList.remove('expired');
 }
