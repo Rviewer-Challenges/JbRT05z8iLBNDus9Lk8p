@@ -15,20 +15,43 @@ h1{
   color: aliceblue;
 }
 
+p{
+  color: aliceblue;
+}
+
 .container{
   margin: 0 auto;
   width: 90%;
   height: 90%;
-  max-width: 50rem;
-  height: 50rem;
-
+  max-width: 30rem;
+  max-height: 40rem;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(6, 1fr);
   gap: .3rem;
 }
 
+.container.grid {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.container.easy{
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.container.medium{
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.container.hard{
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
 .card {
+  width: 8rem; 
+  height: 10rem;
   background-color: #ccc;
   border-radius: 5px;
   animation: 2s hideCard linear;
@@ -54,6 +77,15 @@ img{
 .unmatched{
   background-color: rgb(240, 28, 28);
   border-radius: 5px;
+}
+
+button{
+  cursor: pointer; 
+}
+
+.selected {
+  background-color: goldenrod;
+  color: white; 
 }
 
 @keyframes hideCard {

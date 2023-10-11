@@ -1,12 +1,12 @@
-import Cards from './Components/Cards'
+import MainScreen from './Components/MainScreen'
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <h1>Memory Game GOT</h1>
-      <Cards />
+      {/* <h1>Memory Game GOT</h1> */}
+      <MainScreen />
     </>
   )
 }

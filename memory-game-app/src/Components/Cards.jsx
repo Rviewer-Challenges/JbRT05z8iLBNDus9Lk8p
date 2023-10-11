@@ -2,28 +2,26 @@ import { useState, useEffect } from 'react'
 import { getCards } from '../../data/helper'
 import Card from './Card'
 
-export default function Cards() {
+const Cards = ({ difficulty }) => {
   const [cards, setCards] = useState([])
   const [previousCardIndex, setPreviousCardIndex] = useState(null)
 
   useEffect(() => {
     getCards()
       .then(data => {
-
-        const duplicatedCards = data.reduce((acc, card) => {
-          acc.push({ ...card });
-          acc.push({ ...card });
-          return acc;
-        }, []);
-
+        const duplicatedCards = [];
+        const uniqueCards = data.slice(0, difficulty);
+        for (let i = 0; i < uniqueCards.length; i++) {
+          duplicatedCards.push({ ...uniqueCards[i] });
+          duplicatedCards.push({ ...uniqueCards[i] });
+        }
         const shuffledCards = shuffleArray(duplicatedCards);
-
         setCards(shuffledCards);
       })
       .catch(error => {
         console.error("Error fetching cards:", error);
       });
-  }, [])
+    }, [difficulty]);
 
   const shuffleArray = (array) => {
     const shuffledArray = [...array];
@@ -58,9 +56,7 @@ export default function Cards() {
         setCards(updatedCards);
       }, 1000);
     }
-
     setPreviousCardIndex(null);
-    setCards([...cards]);
   };
 
   const clickHandler = (index) => {
@@ -69,29 +65,37 @@ export default function Cards() {
       if (cards[index].status === 'active matched') {
         alert('Card already matched.');
       } else if (previousCardIndex === null) {
-       
         cards[index].status = 'active';
         setPreviousCardIndex(index);
-      
       } else {
         matchCheck(index);
       }
     } else {
       alert('Card is currently selected.');
     }
-    setCards([...cards]);
   };
 
-  return (
-    <div className="container">
-      {cards.map((card, index) => {
-        return <Card 
-          key={index} 
-          card={card} 
-          index={index} 
+  const renderCards = () => {
+    return cards.map((card, index) => (
+        <Card
+          key={index}
+          card={card}
+          index={index}
           clickHandler={clickHandler}
         />
-      })}
+      ));
+  };
+
+  const containerClassName =
+    difficulty === 8 ? 'container easy' :
+    difficulty === 12 ? 'container medium' :
+    difficulty === 15 ? 'container hard' : 'container grid';
+
+  return (
+    <div className={containerClassName}>
+      {renderCards()}
     </div>
-  )
-}
+  );
+};
+
+export default Cards;
