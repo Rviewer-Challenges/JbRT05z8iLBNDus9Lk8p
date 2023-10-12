@@ -1,12 +1,41 @@
 import { useState, useEffect } from 'react'
 import { getCards } from '../../data/helper'
-import Card from './Card'
+import Timer from './Timer'
+import MoveCounter from './MoveCounter'
+import CardGrid from './CardGrid'
+import RemainingPairs from './RemainingPairs'
 
 const Cards = ({ difficulty }) => {
   const [cards, setCards] = useState([])
   const [previousCardIndex, setPreviousCardIndex] = useState(null)
+  const [moveCount, setMoveCount] = useState(0)
+  const [timeLeft, setTimeLeft] = useState(60)
+  const [remainingPairs, setRemainingPairs] = useState(0)
+  const [gameStarted, setGameStarted] = useState(false)
+
+  const handleTimeout = () => {
+    if (timeLeft === 0) {
+      stopGame();
+    } else {
+      setTimeLeft(timeLeft - 1);
+    }
+  };
+
+  const startGame = () => {
+    if (!gameStarted) {
+      setGameStarted(true);
+      setMoveCount(0);
+      setRemainingPairs(0);
+      setTimeLeft(60);
+    }
+  };
+
+  const stopGame = () => {
+    setGameStarted(false);
+  };
 
   useEffect(() => {
+    if(gameStarted) {
     getCards()
       .then(data => {
         const duplicatedCards = [];
@@ -17,12 +46,14 @@ const Cards = ({ difficulty }) => {
         }
         const shuffledCards = shuffleArray(duplicatedCards);
         setCards(shuffledCards);
+        setRemainingPairs(difficulty);
       })
       .catch(error => {
         console.error("Error fetching cards:", error);
       });
-    }, [difficulty]);
-
+    }
+  }, [difficulty, gameStarted]);
+ 
   const shuffleArray = (array) => {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -35,11 +66,17 @@ const Cards = ({ difficulty }) => {
   const matchCheck = (currentCardIndex) => {
     const currentCard = cards[currentCardIndex];
     const previousCard = cards[previousCardIndex];
-   
+
     if (currentCard.id === previousCard.id) {      
       currentCard.status = 'active matched';
       previousCard.status = 'active matched';
 
+      setRemainingPairs(remainingPairs - 1);
+
+      if(remainingPairs === 1){
+        alert('Congratulations! You have won.');
+        stopGame();
+      }
     }  else {      
       currentCard.status = 'active';
       
@@ -60,6 +97,9 @@ const Cards = ({ difficulty }) => {
   };
 
   const clickHandler = (index) => {
+    if (!gameStarted) {
+      return; 
+    }
      
     if (index !== previousCardIndex) {
       if (cards[index].status === 'active matched') {
@@ -73,28 +113,29 @@ const Cards = ({ difficulty }) => {
     } else {
       alert('Card is currently selected.');
     }
-  };
 
-  const renderCards = () => {
-    return cards.map((card, index) => (
-        <Card
-          key={index}
-          card={card}
-          index={index}
-          clickHandler={clickHandler}
-        />
-      ));
+    setMoveCount(moveCount + 1);
   };
-
-  const containerClassName =
-    difficulty === 8 ? 'container easy' :
-    difficulty === 12 ? 'container medium' :
-    difficulty === 15 ? 'container hard' : 'container grid';
 
   return (
-    <div className={containerClassName}>
-      {renderCards()}
-    </div>
+    <>
+      <div className="btncontainer">
+        <button onClick={startGame} disabled={gameStarted}>
+          Start Game
+        </button>
+        <button onClick={stopGame} disabled={!gameStarted}>
+          Stop Game
+        </button>
+      </div>
+      
+      <div className="countcontainer">
+        <Timer timeLeft={timeLeft} gameStarted={gameStarted} handleTimeout={handleTimeout} stopGame={stopGame} />
+        <RemainingPairs remainingPairs={remainingPairs} />
+        <MoveCounter moveCount={moveCount} />
+      </div>
+
+      <CardGrid cards={cards} clickHandler={clickHandler} gameStarted={gameStarted} difficulty={difficulty}/>
+    </>
   );
 };
 
