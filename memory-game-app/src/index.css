@@ -10,13 +10,23 @@ body {
   padding: 0 auto;
 }
 
-h1{
+h1, p{
   text-align: center;
   color: aliceblue;
+  padding-left: 2rem;
 }
 
-p{
+h1 {
+  text-shadow: 2px 2px goldenrod;
+}
+
+ul, h2{
   color: aliceblue;
+  padding-left: 2rem;
+}
+
+li{
+  margin-bottom: 1em;
 }
 
 .container{
@@ -75,19 +85,27 @@ img{
 }
 
 .unmatched{
-  background-color: rgb(240, 28, 28);
-  border-radius: 5px;
+  background-image: url("../public/emblem.jpeg");
+  background-size: contain;
+  /* background-repeat: no-repeat; */
 }
 
 .maincontainer{
   display: flex;
 }
 
-.btncontainer {
+.linkcontainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 16rem;
+}
+
+.btncontainer{
+  display: flex;
+  justify-content: space-between;
   width: 12rem;
-  height: 3rem;
+  margin: 1rem 2rem;
 }
 
 button{
@@ -97,19 +115,14 @@ button{
   cursor: pointer; 
 }
 
-.selected {
-  background-color: goldenrod;
-  color: white; 
-}
-
 .countcontainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 12rem;
   height: 8rem;
-  gap: 10px;
-  margin: 10px 0;
+  gap: 1rem;
+  margin: 1rem 2rem;
 }
 
 .counter {
@@ -117,6 +130,28 @@ button{
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: lightgray;
+}
+
+.link{
+  text-decoration: none;
+  padding: 8px;
+  color: aliceblue;
+  background-color: goldenrod;
+  border-radius: 0.6rem;
+}
+
+.linkMain{
+  margin: 0 2rem;
+}
+
+.link:hover{
+  transform: scale(130%);
+}
+
+.baner{
+  background-image: url("../public/gotbaner.png");
+  /* background-repeat: no-repeat, no-repeat; */
+  height: 500px;
 }
 
 @keyframes hideCard {
