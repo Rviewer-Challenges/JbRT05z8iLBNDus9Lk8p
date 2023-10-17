@@ -120,10 +120,10 @@ const Cards = ({ difficulty }) => {
   return (
     <>
       <div className="btncontainer">
-        <button onClick={startGame} disabled={gameStarted}>
+        <button onClick={startGame} disabled={gameStarted} data-testid="start-game-button">
           Start Game
         </button>
-        <button onClick={stopGame} disabled={!gameStarted}>
+        <button onClick={stopGame} disabled={!gameStarted} data-testid="stop-game-button">
           Stop Game
         </button>
       </div>

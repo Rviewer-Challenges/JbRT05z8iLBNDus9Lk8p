@@ -17,11 +17,6 @@ const CardGrid = ({ cards, clickHandler, gameStarted, difficulty }) => {
 
   const containerClassName = `container ${getDifficultyClass(difficulty)}`
 
-  // const containerClassName =
-  //   difficulty === 8 ? 'container easy' :
-  //   difficulty === 12 ? 'container medium' :
-  //   difficulty === 15 ? 'container hard' : 'container grid';
-
   return ( 
     <div className={containerClassName}>
       {cards.map((card, index) => (

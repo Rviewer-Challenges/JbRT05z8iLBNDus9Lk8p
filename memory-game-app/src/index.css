@@ -25,6 +25,10 @@ ul, h2{
   padding-left: 2rem;
 }
 
+ul {
+  list-style: none;
+}
+
 li{
   margin-bottom: 1em;
 }
@@ -80,17 +84,16 @@ img{
   transform: rotateY(0);
 }
 
-.card.active img{
+.card.active img {
   opacity: 1;
 }
 
-.unmatched{
+.unmatched {
   background-image: url("../public/emblem.jpeg");
   background-size: contain;
-  /* background-repeat: no-repeat; */
 }
 
-.maincontainer{
+.maincontainer {
   display: flex;
 }
 
@@ -101,14 +104,14 @@ img{
   width: 16rem;
 }
 
-.btncontainer{
+.btncontainer {
   display: flex;
   justify-content: space-between;
   width: 12rem;
   margin: 1rem 2rem;
 }
 
-button{
+button {
   margin: 10px 0;
   padding: 5px;
   border-radius: 5px;
@@ -132,7 +135,7 @@ button{
   background-color: lightgray;
 }
 
-.link{
+.link {
   text-decoration: none;
   padding: 8px;
   color: aliceblue;
@@ -140,18 +143,23 @@ button{
   border-radius: 0.6rem;
 }
 
-.linkMain{
+.linkMain {
   margin: 0 2rem;
 }
 
-.link:hover{
+.link:hover {
   transform: scale(130%);
 }
 
-.baner{
+.baner {
   background-image: url("../public/gotbaner.png");
-  /* background-repeat: no-repeat, no-repeat; */
   height: 500px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .baner {
+    background-image: none;
+  }
 }
 
 @keyframes hideCard {
