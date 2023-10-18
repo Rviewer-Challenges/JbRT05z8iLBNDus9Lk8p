@@ -1,3 +1,6 @@
+
+/* General styles */
+
 body {
   margin: 0;
   padding: 0;
@@ -33,6 +36,8 @@ li{
   margin-bottom: 1em;
 }
 
+/* Grid container styles */
+
 .container{
   margin: 0 auto;
   width: 90%;
@@ -63,16 +68,18 @@ li{
   grid-template-rows: repeat(5, 1fr);
 }
 
+/* Card & image styles */
+
 .card {
   width: 8rem; 
   height: 10rem;
   background-color: #ccc;
   border-radius: 5px;
-  animation: 2s hideCard linear;
-  cursor: pointer; 
+  transform-style: preserve-3d;
+  cursor: pointer;
 }
 
-img{
+img {
   width: 100%;
   height: 100%;
   border-radius: 5px;
@@ -80,7 +87,14 @@ img{
   animation: 2s hideImage linear;
 }
 
-.card.active{
+.card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+
+.card.active {
   transform: rotateY(0);
 }
 
@@ -92,6 +106,8 @@ img{
   background-image: url("../public/emblem.jpeg");
   background-size: contain;
 }
+
+/* Links & buttons styles */
 
 .maincontainer {
   display: flex;
@@ -118,6 +134,8 @@ button {
   cursor: pointer; 
 }
 
+/* Count styles */
+
 .countcontainer {
   display: flex;
   flex-direction: column;
@@ -135,6 +153,8 @@ button {
   background-color: lightgray;
 }
 
+/* Link styles */
+
 .link {
   text-decoration: none;
   padding: 8px;
@@ -151,22 +171,44 @@ button {
   transform: scale(130%);
 }
 
+/* Baner & modal styles */
+
 .baner {
   background-image: url("../public/gotbaner.png");
   height: 500px;
+  margin: 4rem 0;
 }
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: aliceblue;
+  background-color: goldenrod;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Actions */
 
 @media only screen and (max-width: 1200px) {
   .baner {
-    background-image: none;
+    background-image: url("../public/emblem.jpeg");
+    margin: 2rem 0;
   }
 }
 
-@keyframes hideCard {
-  0%, 70%{
-    transform: rotateX(0deg);
-  }100%{
-    transform: rotateX(180deg);
+@media only screen and (max-width: 600px) {
+  .baner {
+    background-image: none;
+    margin: 2rem 0;
   }
 }
 

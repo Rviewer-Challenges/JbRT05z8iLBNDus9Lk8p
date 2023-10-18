@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import Modal from 'react-modal'
 import { getCards } from '../../data/helper'
 import Timer from './Timer'
 import MoveCounter from './MoveCounter'
@@ -12,6 +13,15 @@ const Cards = ({ difficulty }) => {
   const [timeLeft, setTimeLeft] = useState(60)
   const [remainingPairs, setRemainingPairs] = useState(0)
   const [gameStarted, setGameStarted] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+
+  const handleGameWon = () => {
+    setShowModal(true);
+  }
+
+  const closeGameModal = () => {
+    setShowModal(false);
+  }
 
   const handleTimeout = () => {
     if (timeLeft === 0) {
@@ -54,14 +64,14 @@ const Cards = ({ difficulty }) => {
     }
   }, [difficulty, gameStarted]);
  
-  const shuffleArray = (array) => {
+  const shuffleArray = useMemo(() => (array) => {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
     }
     return shuffledArray;
-  };
+  }, []);
 
   const matchCheck = (currentCardIndex) => {
     const currentCard = cards[currentCardIndex];
@@ -74,7 +84,7 @@ const Cards = ({ difficulty }) => {
       setRemainingPairs(remainingPairs - 1);
 
       if(remainingPairs === 1){
-        alert('Congratulations! You have won.');
+        handleGameWon();
         stopGame();
       }
     }  else {      
@@ -111,7 +121,7 @@ const Cards = ({ difficulty }) => {
         matchCheck(index);
       }
     } else {
-      alert('Card is currently selected.');
+      alert('Card currently selected.');
     }
 
     setMoveCount(moveCount + 1);
@@ -135,6 +145,17 @@ const Cards = ({ difficulty }) => {
       </div>
 
       <CardGrid cards={cards} clickHandler={clickHandler} gameStarted={gameStarted} difficulty={difficulty}/>
+
+      <Modal
+        isOpen={showModal}
+        onRequestClose={closeGameModal}
+        contentLabel="Game Over Modal"
+        className={'modal-content'}
+        overlayClassName="modal-overlay"
+      >
+        <h2>Congratulations! You have won!</h2>
+        <button onClick={closeGameModal}>Close</button>
+      </Modal>
     </>
   );
 };

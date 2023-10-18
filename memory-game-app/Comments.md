@@ -2,7 +2,10 @@
 # Memory Game - Game of Thrones
 
 ## Overview
-In this dev challenge, I was tasked with creating a memory game using JavaScript and React, specifically focused on the Game of Thrones theme. The game requires players to match pairs of cards by revealing them in pairs. This COMMENTS.md file will provide insights into my thought process, implementation path, and some considerations for further improvements.
+In this dev challenge, I was tasked with creating a memory game. Game is focused on the Game of Thrones theme. The game requires players to match pairs of cards by revealing them in pairs. This COMMENTS.md file will provide insights into my thought process, implementation path, and some considerations for further improvements.
+
+## Stack used
+I was using HTML, CSS, JavaScript, and React to implement that game. Tests added with Jest and React Testing Library.
 
 ## Components
 
@@ -13,7 +16,6 @@ In this dev challenge, I was tasked with creating a memory game using JavaScript
   - Renders a title, instructions, and difficulty level links.
 - **Improvements**:
   - UI Styling: More styling needs to be added to make the landing page more engaging.
-  - Navigation: Navigation needs to be Enhanced to provide a smoother transition between components.
 
 ### Cards Component
 - **Description**: This is the core component of the game, where the actual gameplay happens.
@@ -22,7 +24,7 @@ In this dev challenge, I was tasked with creating a memory game using JavaScript
   - Fetches card data using the `getCards` function.
   - Implements the game logic for revealing and matching cards.
 - **Improvements**:
-  - Responsiveness: Ensure the game is responsive and works well on different screen sizes.
+  - Responsiveness: Ensure the game is responsive and works well on different screen sizes. Now the optimal one is more then 1200px.
   - Accessibility: Enhance accessibility features for a better user experience.
 
 ### CardGrid Component
@@ -30,7 +32,7 @@ In this dev challenge, I was tasked with creating a memory game using JavaScript
 - **Implementation**:
   - Accepts card data and renders a grid of cards based on the chosen difficulty level.
 - **Improvements**:
-  - Responsive Design: Ensure the grid adjusts to different difficulty levels.
+  - Responsive Design: Ensure the grid adjusts to different difficulty levels and screen sizes.
   - More animations need to be added to enhance user experience.
 
 ### Card Component
@@ -60,7 +62,7 @@ In this dev challenge, I was tasked with creating a memory game using JavaScript
   - Manages the timer based on the game state.
 - **Improvements**:
   - Add visual indicators for the timer.
-  - Add sounds or alerts when the time is up.
+  - Add sounds when the time is up.
 
 ### App Component (Entry Point)
 - **Description**: The main entry point for the application.
@@ -75,7 +77,7 @@ In this dev challenge, I was tasked with creating a memory game using JavaScript
 - **Implementation**: The styling is applied using CSS classes in the components.
 - **Improvements**:
   - Consider using a CSS preprocessor (e.g., Sass) for better code organization.
-  - Optimize styles for improved performance.
+  - Optimize styles for improved performance and separate them for different components.
 
 ## Data
 - **Description**: The game uses a JSON file to store card data.
@@ -84,9 +86,9 @@ In this dev challenge, I was tasked with creating a memory game using JavaScript
   - Consider using a more structured data format to enhance maintainability and readability.
 
 ## Further Improvements
-- **Testing**: Add unit tests to ensure the reliability of the components and game logic.
+- **Testing**: Add more unit tests to ensure the reliability of the components and game logic.
 - **State Management**: Explore the use of state management libraries like Redux for improved component communication.
-- **Game Features**: Add features like a scoreboard, user profiles, or themes to make the game more engaging.
+- **Game Features**: Add features like a scoreboard, user profiles to make the game more engaging.
 - **Multiplayer**: Implement a multiplayer mode to allow users to compete with others.
 - **Localization**: Add support for multiple languages.
 - **Animations**: Enhance user experience with smooth animations and transitions.
