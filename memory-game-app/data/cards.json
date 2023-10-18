@@ -1,0 +1,92 @@
+[
+  {
+    "image": "../src/assets/images/1.jpg",
+    "name": "daenerys",
+    "id": 1,
+    "status" : ""
+  },
+  {
+    "image": "../src/assets/images/2.jpg",
+    "name": "tyrion",
+    "id": 2,
+    "status" : ""
+  },
+  {
+    "image": "../src/assets/images/3.jpg",
+    "name": "jonsnow",
+    "id": 3,
+    "status" : ""
+  },
+  {
+    "image": "../src/assets/images/4.jpg",
+    "name": "aryastark",
+    "id": 4,
+    "status" : ""
+  },
+  {
+    "image": "../src/assets/images/5.jpg",
+    "name": "cerseilannister",
+    "id": 5,
+    "status" : ""
+  },
+  {
+    "image": "../src/assets/images/6.jpg",
+    "name": "nightking",
+    "id": 6,
+    "status" : ""
+  },
+  {
+    "image": "../src/assets/images/7.jpg",
+    "name": "briennetarth",
+    "id": 7,
+    "status" : ""
+  },
+  {
+    "image": "../src/assets/images/8.jpg",
+    "name": "sandorclegane",
+    "id": 8,
+    "status" : ""
+  },
+   {
+    "image": "../src/assets/images/9.jpg",
+    "name": "joffrey",
+    "id": 9,
+    "status" : ""
+  },
+   {
+    "image": "../src/assets/images/10.jpg",
+    "name": "nedstark",
+    "id": 10,
+    "status" : ""
+  },
+   {
+    "image": "../src/assets/images/11.jpg",
+    "name": "tywinlannister",
+    "id": 11,
+    "status" : ""
+  },
+   {
+    "image": "../src/assets/images/12.jpg",
+    "name": "jaimelannister",
+    "id": 12,
+    "status" : ""
+  },
+  {
+    "image": "../src/assets/images/13.jpg",
+    "name": "jorahmormont",
+    "id": 13,
+    "status" : ""
+  },
+   {
+    "image": "../src/assets/images/14.jpg",
+    "name": "melisandre",
+    "id": 14,
+    "status" : ""
+  },
+   {
+    "image": "../src/assets/images/15.jpg",
+    "name": "petyrbaelish",
+    "id": 15,
+    "status" : ""
+  }
+]

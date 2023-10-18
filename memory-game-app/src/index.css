@@ -1,0 +1,221 @@
+
+/* General styles */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+   
+  background-color: rgb(33, 33, 33);
+  height: 100%;
+ 
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+h1, p{
+  text-align: center;
+  color: aliceblue;
+  padding-left: 2rem;
+}
+
+h1 {
+  text-shadow: 2px 2px goldenrod;
+}
+
+ul, h2{
+  color: aliceblue;
+  padding-left: 2rem;
+}
+
+ul {
+  list-style: none;
+}
+
+li{
+  margin-bottom: 1em;
+}
+
+/* Grid container styles */
+
+.container{
+  margin: 0 auto;
+  width: 90%;
+  height: 90%;
+  max-width: 30rem;
+  max-height: 40rem;
+  display: grid;
+  gap: .3rem;
+}
+
+.container.grid {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.container.easy{
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.container.medium{
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.container.hard{
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+/* Card & image styles */
+
+.card {
+  width: 8rem; 
+  height: 10rem;
+  background-color: #ccc;
+  border-radius: 5px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  opacity: 0;
+  animation: 2s hideImage linear;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+
+.card.active {
+  transform: rotateY(0);
+}
+
+.card.active img {
+  opacity: 1;
+}
+
+.unmatched {
+  background-image: url("../public/emblem.jpeg");
+  background-size: contain;
+}
+
+/* Links & buttons styles */
+
+.maincontainer {
+  display: flex;
+}
+
+.linkcontainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 16rem;
+}
+
+.btncontainer {
+  display: flex;
+  justify-content: space-between;
+  width: 12rem;
+  margin: 1rem 2rem;
+}
+
+button {
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer; 
+}
+
+/* Count styles */
+
+.countcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 12rem;
+  height: 8rem;
+  gap: 1rem;
+  margin: 1rem 2rem;
+}
+
+.counter {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: lightgray;
+}
+
+/* Link styles */
+
+.link {
+  text-decoration: none;
+  padding: 8px;
+  color: aliceblue;
+  background-color: goldenrod;
+  border-radius: 0.6rem;
+}
+
+.linkMain {
+  margin: 0 2rem;
+}
+
+.link:hover {
+  transform: scale(130%);
+}
+
+/* Baner & modal styles */
+
+.baner {
+  background-image: url("../public/gotbaner.png");
+  height: 500px;
+  margin: 4rem 0;
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: aliceblue;
+  background-color: goldenrod;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Actions */
+
+@media only screen and (max-width: 1200px) {
+  .baner {
+    background-image: url("../public/emblem.jpeg");
+    margin: 2rem 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .baner {
+    background-image: none;
+    margin: 2rem 0;
+  }
+}
+
+@keyframes hideImage {
+  0%, 84%{
+    opacity: 1;
+  }85%{
+    opacity: 0;
+  }
+}
